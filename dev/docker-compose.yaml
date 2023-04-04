@@ -2,15 +2,16 @@
 version: "3.4"
 services:
   fhir:
-    image: hapiproject/hapi:${FHIR_IMAGE_TAG:-v5.5.1}
+    image: ${FHIR_IMAGE_NAME:-alphora/cqf-ruler}:${FHIR_IMAGE_TAG:-0.12.0}
     environment:
       SPRING_CONFIG_LOCATION: file:///opt/application.yaml
       spring.datasource.url: jdbc:postgresql://db:5432/hapifhir
       spring.datasource.username: hapifhir
       spring.datasource.password: hapifhir
       spring.datasource.driverClassName: org.postgresql.Driver
-      spring.jpa.hibernate.dialect: org.hibernate.dialect.PostgreSQL94Dialect
-
+      spring.jpa.properties.hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+      hapi.fhir.server_address: 'https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/'
+      hapi.fhir.tester.home.server_address: 'https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/'
     volumes:
       - "./config/hapi/application.yaml:/opt/application.yaml:ro"
     depends_on:
