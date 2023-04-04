@@ -1,5 +1,5 @@
 # Development Configuration
-Sets up a copy of CNICS FHIR environments, for development
+Sets up a copy of CDS FHIR environments, for development
 
 
 ## Setup

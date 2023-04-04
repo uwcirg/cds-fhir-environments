@@ -1,5 +1,5 @@
-# CNICS FHIR Environments
-Configuration for CNICS services. Includes components for transforming CNICS relational data into FHIR resources, persisting those resources, and applying FHIR-based classifications based on matching criteria.
+# CDS FHIR Environments
+Configuration for CDS services
 
 
 ## Setup
