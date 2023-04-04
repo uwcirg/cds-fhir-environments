@@ -15,8 +15,6 @@ services:
       - "./config/hapi/application.yaml:/opt/application.yaml:ro"
     depends_on:
       - db
-    ports:
-      - "127.0.0.1:${EXTERNAL_PORT:-8090}:8080"
     networks:
       - internal
 
