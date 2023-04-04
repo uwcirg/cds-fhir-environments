@@ -19,6 +19,11 @@ services:
     networks:
       - internal
 
+  requestbin:
+    image: darklynx/request-baskets:v1.2.1
+    networks:
+      - internal
+
   db:
     image: postgres:${POSTGRES_IMAGE_TAG:-15}
     environment:
