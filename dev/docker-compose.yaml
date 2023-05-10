@@ -2,7 +2,7 @@
 version: "3.4"
 services:
   fhir:
-    image: ${FHIR_IMAGE_NAME:-alphora/cqf-ruler}:${FHIR_IMAGE_TAG:-0.12.0}
+    image: ${FHIR_IMAGE_NAME:-alphora/cqf-ruler}:${FHIR_IMAGE_TAG:-0.13.0}
     environment:
       SPRING_CONFIG_LOCATION: file:///opt/application.yaml
       spring.datasource.url: jdbc:postgresql://db:5432/hapifhir
