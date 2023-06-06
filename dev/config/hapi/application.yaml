@@ -103,7 +103,6 @@ hapi:
       ## CDS Hook Settings
       cdshooks:
          enabled: true
-         clientIdHeaderName: client_id
          fhirserver:
             expandValueSets: true
             maxCodesPerQuery: 64
