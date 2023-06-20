@@ -1,0 +1,42 @@
+version: "3.4"
+services:
+  portainer:
+    # image: portainer/portainer-ce:linux-amd64-2.1.0
+    # image: portainer/portainer:1.24.1
+    image: portainer/portainer-ce:2.18.3
+    command: --no-analytics --admin-password="${ADMIN_PASSWD:?}" -H unix:///var/run/docker.sock --http-enabled
+    # environment:
+      # VIRTUAL_HOST: portainer.${BASE_DOMAIN}
+      # VIRTUAL_PORT: 9443
+      # VIRTUAL_PORT: 8000
+      # VIRTUAL_PORT: 9000
+    volumes:
+      # - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.hapi-${COMPOSE_PROJECT_NAME}.rule=Host(`portainer.${BASE_DOMAIN}`)
+      - traefik.http.routers.hapi-${COMPOSE_PROJECT_NAME}.entrypoints=websecure
+      - traefik.http.routers.hapi-${COMPOSE_PROJECT_NAME}.tls=true
+      - traefik.http.routers.hapi-${COMPOSE_PROJECT_NAME}.tls.certresolver=letsencrypt
+
+      # portainer EXPOSEs multiple ports
+      # - traefik.http.services.hapi-${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=8000
+      - traefik.http.services.hapi-${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=9000
+      # - traefik.http.services.hapi-${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=9443
+    networks:
+      - ingress
+    # ports:
+      # - 8000:8000
+      # - 9000:9000
+      # - 9443:9443
+
+networks:
+  # ingress network
+  ingress:
+    external: true
+    name: external_web
+
+volumes:
+  portainer_data: {}
