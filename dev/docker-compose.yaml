@@ -11,7 +11,16 @@ services:
       spring.datasource.driverClassName: org.postgresql.Driver
       spring.jpa.properties.hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
       hapi.fhir.server_address: https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/
-      hapi.fhir.tester.home.server_address: https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/
+
+      # Testpage server configuration
+      # Unable to remove/unset global test server included by default
+      # modify global test server as needed
+      hapi.fhir.tester.global.server_address: https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/
+      hapi.fhir.tester.global.name: External HTTPS
+      # internal network test
+      # modify home test server as needed
+      hapi.fhir.tester.home.server_address: http://fhir:8080/fhir/
+      hapi.fhir.tester.home.name: Internal HTTP
 
       hapi.fhir.cdshooks.clientIdHeaderName: ${CLIENT_ID}
     volumes:
