@@ -1,5 +1,5 @@
-# originally from:
-# https://raw.githubusercontent.com/DBCG/cqf-ruler/v0.13.0/server/src/main/resources/application.yaml
+# originally from config corresponding with docker image tag alphora/cqf-ruler:0.14.0-pre
+# https://raw.githubusercontent.com/cqframework/cqf-ruler/0dff91e/server/src/main/resources/application.yaml
 spring:
    config:
       import: classpath:org/opencds/cqf/external/application.yaml
@@ -11,9 +11,11 @@ spring:
 hapi:
    fhir:
       fhir_version: R4
+      server_address: "http://localhost:8080/fhir"
       allow_external_references: true
       enforce_referential_integrity_on_delete: false
       enforce_referential_integrity_on_write: false
+      cr_enabled: true
       cors:
          allow_Credentials: true
          allowed_origin:
@@ -103,6 +105,7 @@ hapi:
       ## CDS Hook Settings
       cdshooks:
          enabled: true
+         clientIdHeaderName: client_id
          fhirserver:
             expandValueSets: true
             maxCodesPerQuery: 64
