@@ -10,12 +10,12 @@ services:
       spring.datasource.password: hapifhir
       spring.datasource.driverClassName: org.postgresql.Driver
       spring.jpa.properties.hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
-      hapi.fhir.server_address: 'https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/'
-      hapi.fhir.tester.home.server_address: 'https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/'
+      hapi.fhir.server_address: https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/
+      hapi.fhir.tester.home.server_address: https://fhir.${BASE_DOMAIN:-localtest.me}/fhir/
 
       hapi.fhir.cdshooks.clientIdHeaderName: ${CLIENT_ID}
     volumes:
-      - "./config/hapi/application.yaml:/opt/application.yaml:ro"
+      - ./config/hapi/application.yaml:/opt/application.yaml:ro
     depends_on:
       - db
     networks:
