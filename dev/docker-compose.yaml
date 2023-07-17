@@ -22,6 +22,8 @@ services:
       hapi.fhir.tester.home.server_address: http://fhir:8080/fhir/
       hapi.fhir.tester.home.name: Internal HTTP
 
+      # https://github.com/cqframework/cqf-ruler/wiki/Deployment#cql-logging
+      hapi.fhir.cql.engine.debug_logging_enabled: "true"
       hapi.fhir.cdshooks.clientIdHeaderName: ${CLIENT_ID}
     volumes:
       - ./config/hapi/application.yaml:/opt/application.yaml:ro
